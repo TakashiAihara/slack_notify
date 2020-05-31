@@ -1,10 +1,11 @@
 import os
 import slack
+import sys
 
 client = slack.WebClient(token=os.environ['SLACK_TOKEN'])
 
 response = client.chat_postMessage(
-    channel='#cli',
-    text="Hello world!")
+    channel='#general',
+    text=sys.argv[1])
 assert response["ok"]
-assert response["message"]["text"] == "Hello world!"
+assert response["message"]["text"] == sys.argv[1]
